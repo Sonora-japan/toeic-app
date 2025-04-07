@@ -2,24 +2,15 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>My TOEIC サービス</title>
-</head>
-<body>
-  <h1>ようこそ！推しで学べるTOEIC</h1>
-  <p>ここからあなたのTOEIC学習が始まります！</p>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
   <title>今週の時事TOEIC：大谷翔平編</title>
   <style>
     body { font-family: sans-serif; padding: 2em; max-width: 800px; margin: auto; line-height: 1.6; }
     h1, h2 { color: #003366; }
-    .question { margin-bottom: 1.5em; }
+    .question { margin-bottom: 2em; }
     .answer { color: green; font-weight: bold; }
     .note { font-style: italic; color: #555; }
+    #result { font-weight: bold; }
+    #explanation { color: gray; }
   </style>
 </head>
 <body>
@@ -30,48 +21,44 @@
 
   <hr>
 
-  <div class="question">
-    <h3>【Part 5 - 語彙】</h3>
+  <div class="question" id="quiz">
+    <h3>【Part 5 - 語彙 問題を解こう】</h3>
     <p><strong>Shohei Ohtani’s first home run of the 2025 season was ______ after a video review at the Tokyo Dome.</strong></p>
-    <ol type="a">
-      <li>awarded</li>
-      <li><strong class="answer">confirmed ✅</strong></li>
-      <li>announced</li>
-      <li>received</li>
-    </ol>
-    <p class="note">→ 「確認された」が自然。ビデオ判定の文脈では "confirmed" を使います。</p>
+    <form id="question-form">
+      <label><input type="radio" name="q1" value="a"> awarded</label><br>
+      <label><input type="radio" name="q1" value="b"> confirmed</label><br>
+      <label><input type="radio" name="q1" value="c"> announced</label><br>
+      <label><input type="radio" name="q1" value="d"> received</label><br><br>
+      <button type="button" onclick="checkAnswer()">解答する</button>
+    </form>
+    <p id="result"></p>
+    <p id="explanation"></p>
   </div>
 
-  <div class="question">
-    <h3>【Part 6 - 短文穴埋め】</h3>
-    <p><strong>[Official MLB Memo]</strong><br>
-    Shohei Ohtani hit a two-run homer that was initially questioned but later ______ valid by the video replay system.</p>
-    <ol type="a">
-      <li>considered</li>
-      <li>remained</li>
-      <li>declared</li>
-      <li><strong class="answer">found ✅</strong></li>
-    </ol>
-    <p class="note">→ find A B = AをBだと判断する。典型的なTOEIC語法。</p>
-  </div>
+  <script>
+    function checkAnswer() {
+      const answer = document.querySelector('input[name="q1"]:checked');
+      const result = document.getElementById("result");
+      const explanation = document.getElementById("explanation");
 
-  <div class="question">
-    <h3>【Part 7 - 読解（メール）】</h3>
-    <p><strong>Email from:</strong> tokyo-series@mlb.com<br>
-    <strong>Subject:</strong> Highlights from Tokyo Opening Game</p>
-    <p>Dear Fans, <br>
-    Thank you for attending the Tokyo Opening Game! We hope you enjoyed the match between the Dodgers and the Cubs.<br>
-    One of the most exciting moments was when Shohei Ohtani hit a deep fly ball to right field. After a brief review, the umpire ______ it a home run.<br>
-    The stadium erupted with cheers as Ohtani rounded the bases.</p>
-    <p><strong>Q: What happened after the review?</strong></p>
-    <ol type="a">
-      <li>Ohtani’s home run was cancelled</li>
-      <li>The crowd booed the decision</li>
-      <li><strong class="answer">The home run was confirmed ✅</strong></li>
-      <li>Ohtani left the game early</li>
-    </ol>
-    <p class="note">→ ビデオ判定の結果「確認された」という読み取りが必要。</p>
-  </div>
+      if (!answer) {
+        result.textContent = "選択肢を選んでください！";
+        result.style.color = "black";
+        explanation.textContent = "";
+        return;
+      }
+
+      if (answer.value === "b") {
+        result.textContent = "正解！✅";
+        result.style.color = "green";
+        explanation.textContent = "→ confirmed（確認された）が最も自然な選択です。";
+      } else {
+        result.textContent = "不正解…❌";
+        result.style.color = "red";
+        explanation.textContent = "→ 正解は confirmed（確認された）です。ビデオ判定の文脈に合います。";
+      }
+    }
+  </script>
 
 </body>
 </html>
