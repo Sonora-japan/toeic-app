@@ -98,6 +98,39 @@
     document.getElementById("time-result").textContent = timeMessage;
   }
 </script>
+<div class="result">
+  <h2>📤 結果をSNSでシェアしよう！</h2>
+  <p>この模擬テストに挑戦したことを友達に知らせよう！</p>
+  <button onclick="shareOnTwitter()">🕊 X（Twitter）でシェア</button>
+  <button onclick="captureResult()">📸 Instagram用画像を保存</button>
+</div>
+
+<!-- html2canvasライブラリ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+  function shareOnTwitter() {
+    const scoreText = document.getElementById("score")?.textContent || "";
+    const timeText = document.getElementById("time-result")?.textContent || "";
+    const tweetText = encodeURIComponent(`TOEIC Part 5 模擬問題に挑戦しました！
+${scoreText}
+${timeText}
+#TOEIC #英語学習 #模試 #推しTOEIC`);
+    const url = encodeURIComponent(window.location.href);
+    const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${url}`;
+    window.open(tweetUrl, '_blank');
+  }
+
+  function captureResult() {
+    const resultArea = document.querySelector('.result');
+    html2canvas(resultArea).then(canvas => {
+      const link = document.createElement('a');
+      link.download = 'toeic_result.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  }
+</script>
 
 </body>
 </html>
