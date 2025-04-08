@@ -248,7 +248,7 @@ let startTime = Date.now();
 const timerDisplay = document.getElementById("timer");
 setInterval(() => {
   const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  timerDisplay.textContent = `${translations.labels[currentLang].timeTaken} ${elapsed}${translations.labels[currentLang].seconds}（目安: 600${translations.labels[currentLang].seconds}）`）`;
+  timerDisplay.textContent = `${translations.labels[currentLang].timeTaken} ${elapsed}${translations.labels[currentLang].seconds}（目安: 600${translations.labels[currentLang].seconds}）`;
 }, 1000);
 
 // ページ読み込み時に言語設定と問題描画を実行
