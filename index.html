@@ -28,7 +28,7 @@
 <div id="timer">🕒 解答時間: 0秒</div>
 <form id="toeic-form">
   <div id="questions"></div>
-  <button type="button" onclick="gradeQuiz()">解答を提出する</button>
+  <button id="submit-button" type="button" onclick="gradeQuiz()">解答を提出する</button>
 </form>
 
 <div id="score" class="result"></div>
@@ -158,6 +158,35 @@ const quizData = [
 };
 
 const translations = {
+  labels: {
+    ja: {
+      yourAnswer: "あなたの答え",
+      correctAnswer: "正解",
+      explanation: "解説",
+      scoreSummary: "あなたの正解数は",
+      timeTaken: "⏱ 解答時間は",
+      withinTime: "（時間内に解き終わりました✨）",
+      overtime: "（想定時間を超えています⚠️）"
+    },
+    en: {
+      yourAnswer: "Your Answer",
+      correctAnswer: "Correct Answer",
+      explanation: "Explanation",
+      scoreSummary: "Your correct answers:",
+      timeTaken: "⏱ Time Taken:",
+      withinTime: "(Finished within time ✨)",
+      overtime: "(Over expected time ⚠️)"
+    },
+    ko: {
+      yourAnswer: "당신의 답변",
+      correctAnswer: "정답",
+      explanation: "해설",
+      scoreSummary: "정답 수:",
+      timeTaken: "⏱ 소요 시간:",
+      withinTime: "(시간 내에 완료 ✨)",
+      overtime: "(예상 시간을 초과 ⚠️)"
+    }
+  },
     ja: {
       title: "📝 今週の時事TOEIC Part 5 模擬問題（全25問）",
       shareTitle: "📤 結果をSNSでシェアしよう！",
@@ -183,6 +212,12 @@ function setLanguage(lang) {
   document.getElementById("share-title").textContent = translations[lang].shareTitle;
   document.getElementById("share-text").textContent = translations[lang].shareText;
   document.querySelector(`#language-select select`).value = lang;
+  const submitBtn = document.getElementById("submit-button");
+  if (submitBtn) {
+    if (lang === "ja") submitBtn.textContent = "解答を提出する";
+    if (lang === "en") submitBtn.textContent = "Submit Answers";
+    if (lang === "ko") submitBtn.textContent = "답안 제출하기";
+  }
 }
 </script>
 <script>
@@ -218,7 +253,7 @@ function gradeQuiz() {
   let correct = 0;
   const explanationDiv = document.createElement("div");
   explanationDiv.className = "result";
-  explanationDiv.innerHTML = "<h2>🧠 解説</h2>";
+  explanationDiv.innerHTML = `<h2>🧠 ${translations.labels[currentLang].explanation}</h2>`;
 
   for (let i = 0; i < quizData.length; i++) {
     const selected = document.querySelector(`input[name=q${i}]:checked`);
@@ -227,18 +262,18 @@ function gradeQuiz() {
 
     explanationDiv.innerHTML += `
       <p><strong>Q${i + 1}:</strong><br>
-      あなたの答え: ${userAnswer}<br>
-      正解: ${quizData[i].answer}<br>
-      解説: ${explanationsLang[currentLang][i]}</p>`;
+      ${translations.labels[currentLang].yourAnswer}: ${userAnswer}<br>
+      ${translations.labels[currentLang].correctAnswer}: ${quizData[i].answer}<br>
+      ${translations.labels[currentLang].explanation}: ${explanationsLang[currentLang][i]}</p>`;
   }
 
   const percentage = ((correct / quizData.length) * 100).toFixed(1);
   document.getElementById("score").innerHTML =
-    `あなたの正解数は <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）です！`;
+    `${translations.labels[currentLang].scoreSummary} <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）`;
 
   const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  let timeMessage = `⏱ 解答時間は ${elapsed} 秒です。`;
-  timeMessage += elapsed <= 600 ? "（時間内に解き終わりました✨）" : "（想定時間を超えています⚠️）";
+  let timeMessage = `${translations.labels[currentLang].timeTaken} ${elapsed} 秒です。`;
+  timeMessage += elapsed <= 600 ? translations.labels[currentLang].withinTime : translations.labels[currentLang].overtime;
   document.getElementById("time-result").textContent = timeMessage;
 
   document.body.appendChild(explanationDiv);
