@@ -196,109 +196,36 @@ const translations = {
       overtime: "(예상 시간을 초과 ⚠️)"
     }
   },
-  // 既存の translations の上に移動した labels により不要な buttons の重複データを除去
-buttons: {
+  buttons: {
     ja: {
       twitter: "🕊 X（Twitter）でシェア",
       instagram: "📸 Instagram用画像を保存"
     },
     en: {
-      seconds: "seconds",
-      unanswered: "(Unanswered)",
-      targetTime: "(Target: 600 seconds)",
-      seconds: "seconds",
-      unanswered: "(Unanswered)",
-      targetTime: "(Target: 600 seconds)",
-      seconds: "seconds",
       twitter: "🕊 Share on X (Twitter)",
       instagram: "📸 Save Image for Instagram"
     },
     ko: {
-      seconds: "초",
-      unanswered: "(미응답)",
-      targetTime: "(예상: 600초)",
-      seconds: "초",
-      unanswered: "(미응답)",
-      targetTime: "(예상: 600초)",
-      seconds: "초",
       twitter: "🕊 X (트위터)로 공유하기",
       instagram: "📸 인스타그램용 이미지 저장"
     }
   },
-  labels: {
-    ja: {
-      seconds: "秒",
-      unanswered: "（未回答）",
-      targetTime: "（目安: 600秒）",
-      seconds: "秒",
-      unanswered: "（未回答）",
-      targetTime: "（目安: 600秒）",
-      seconds: "秒",
-      yourAnswer: "あなたの答え",
-      correctAnswer: "正解",
-      explanation: "解説",
-      scoreSummary: "あなたの正解数は",
-      timeTaken: "⏱ 解答時間は",
-      withinTime: "（時間内に解き終わりました✨）",
-      overtime: "（想定時間を超えています⚠️）"
-    },
-    en: {
-      yourAnswer: "Your Answer",
-      correctAnswer: "Correct Answer",
-      explanation: "Explanation",
-      scoreSummary: "Your correct answers:",
-      timeTaken: "⏱ Time Taken:",
-      withinTime: "(Finished within time ✨)",
-      overtime: "(Over expected time ⚠️)"
-    },
-    ko: {
-      yourAnswer: "당신의 답변",
-      correctAnswer: "정답",
-      explanation: "해설",
-      scoreSummary: "정답 수:",
-      timeTaken: "⏱ 소요 시간:",
-      withinTime: "(시간 내에 완료 ✨)",
-      overtime: "(예상 시간을 초과 ⚠️)"
-    }
+  ja: {
+    title: "📝 今週の時事TOEIC Part 5 模擬問題（全25問）",
+    shareTitle: "📤 結果をSNSでシェアしよう！",
+    shareText: "この模擬テストに挑戦したことを友達に知らせよう！"
   },
-    ja: {
-      title: "📝 今週の時事TOEIC Part 5 模擬問題（全25問）",
-      shareTitle: "📤 結果をSNSでシェアしよう！",
-      shareText: "この模擬テストに挑戦したことを友達に知らせよう！"
-    },
-    en: {
-      title: "📝 This Week's Current TOEIC Part 5 Practice Test (25 Questions)",
-      shareTitle: "📤 Share Your Results on Social Media!",
-      shareText: "Let your friends know you challenged this mock TOEIC test!"
-    },
-    ko: {
-      title: "📝 이번 주 시사 TOEIC Part 5 모의시험 (총 25문제)",
-      shareTitle: "📤 결과를 SNS에 공유하세요!",
-      shareText: "이 모의시험에 도전한 것을 친구들에게 알려보세요!"
-    }
-  };
-
-  let currentLang = "ja";
-function setLanguage(lang) {
-  currentLang = lang;
-  localStorage.setItem("toeicLang", lang);
-  document.getElementById("main-title").textContent = translations[lang].title;
-  document.getElementById("share-title").textContent = translations[lang].shareTitle;
-  document.getElementById("share-text").textContent = translations[lang].shareText;
-  document.querySelector(`#language-select select`).value = lang;
-  const submitBtn = document.getElementById("submit-button");
-  const twitterBtn = document.getElementById("share-twitter");
-  const instaBtn = document.getElementById("share-instagram");
-
-  if (submitBtn) {
-    if (lang === "ja") submitBtn.textContent = "解答を提出する";
-    if (lang === "en") submitBtn.textContent = "Submit Answers";
-    if (lang === "ko") submitBtn.textContent = "답안 제출하기";
+  en: {
+    title: "📝 This Week's Current TOEIC Part 5 Practice Test (25 Questions)",
+    shareTitle: "📤 Share Your Results on Social Media!",
+    shareText: "Let your friends know you challenged this mock TOEIC test!"
+  },
+  ko: {
+    title: "📝 이번 주 시사 TOEIC Part 5 모의시험 (총 25문제)",
+    shareTitle: "📤 결과를 SNS에 공유하세요!",
+    shareText: "이 모의시험에 도전한 것을 친구들에게 알려보세요!"
   }
-  if (twitterBtn) twitterBtn.textContent = translations.buttons[lang].twitter;
-  if (instaBtn) instaBtn.textContent = translations.buttons[lang].instagram;
-}
-</script>
+};
 <script>
 // タイマー表示
 let startTime = Date.now();
