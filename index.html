@@ -37,8 +37,8 @@
 <div class="result">
   <h2 id="share-title">📤 結果をSNSでシェアしよう！</h2>
   <p id="share-text">この模擬テストに挑戦したことを友達に知らせよう！</p>
-  <button onclick="shareOnTwitter()">🕊 X（Twitter）でシェア</button>
-  <button onclick="captureResult()">📸 Instagram用画像を保存</button>
+  <button id="share-twitter" onclick="shareOnTwitter()">🕊 X（Twitter）でシェア</button>
+  <button id="share-instagram" onclick="captureResult()">📸 Instagram用画像を保存</button>
 </div>
 
 <!-- html2canvasライブラリ -->
@@ -158,6 +158,20 @@ const quizData = [
 };
 
 const translations = {
+  buttons: {
+    ja: {
+      twitter: "🕊 X（Twitter）でシェア",
+      instagram: "📸 Instagram用画像を保存"
+    },
+    en: {
+      twitter: "🕊 Share on X (Twitter)",
+      instagram: "📸 Save Image for Instagram"
+    },
+    ko: {
+      twitter: "🕊 X (트위터)로 공유하기",
+      instagram: "📸 인스타그램용 이미지 저장"
+    }
+  },
   labels: {
     ja: {
       yourAnswer: "あなたの答え",
@@ -213,11 +227,16 @@ function setLanguage(lang) {
   document.getElementById("share-text").textContent = translations[lang].shareText;
   document.querySelector(`#language-select select`).value = lang;
   const submitBtn = document.getElementById("submit-button");
+  const twitterBtn = document.getElementById("share-twitter");
+  const instaBtn = document.getElementById("share-instagram");
+
   if (submitBtn) {
     if (lang === "ja") submitBtn.textContent = "解答を提出する";
     if (lang === "en") submitBtn.textContent = "Submit Answers";
     if (lang === "ko") submitBtn.textContent = "답안 제출하기";
   }
+  if (twitterBtn) twitterBtn.textContent = translations.buttons[lang].twitter;
+  if (instaBtn) instaBtn.textContent = translations.buttons[lang].instagram;
 }
 </script>
 <script>
