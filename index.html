@@ -165,10 +165,16 @@ const translations = {
     },
     en: {
       seconds: "seconds",
+      unanswered: "(Unanswered)",
+      targetTime: "(Target: 600 seconds)",
+      seconds: "seconds",
       twitter: "🕊 Share on X (Twitter)",
       instagram: "📸 Save Image for Instagram"
     },
     ko: {
+      seconds: "초",
+      unanswered: "(미응답)",
+      targetTime: "(예상: 600초)",
       seconds: "초",
       twitter: "🕊 X (트위터)로 공유하기",
       instagram: "📸 인스타그램용 이미지 저장"
@@ -176,6 +182,9 @@ const translations = {
   },
   labels: {
     ja: {
+      seconds: "秒",
+      unanswered: "（未回答）",
+      targetTime: "（目安: 600秒）",
       seconds: "秒",
       yourAnswer: "あなたの答え",
       correctAnswer: "正解",
@@ -248,7 +257,7 @@ let startTime = Date.now();
 const timerDisplay = document.getElementById("timer");
 setInterval(() => {
   const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  timerDisplay.textContent = `${translations.labels[currentLang].timeTaken} ${elapsed}${translations.labels[currentLang].seconds}（目安: 600${translations.labels[currentLang].seconds}）`;
+  timerDisplay.textContent = `${translations.labels[currentLang].timeTaken} ${elapsed}${translations.labels[currentLang].seconds}${translations.labels[currentLang].targetTime}`;
 }, 1000);
 
 // ページ読み込み時に言語設定と問題描画を実行
@@ -279,7 +288,7 @@ function gradeQuiz() {
 
   for (let i = 0; i < quizData.length; i++) {
     const selected = document.querySelector(`input[name=q${i}]:checked`);
-    const userAnswer = selected ? selected.value : "（未回答）";
+    const userAnswer = selected ? selected.value : translations.labels[currentLang].unanswered;
     if (selected && selected.value === quizData[i].answer) correct++;
 
     explanationDiv.innerHTML += `
