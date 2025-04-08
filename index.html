@@ -214,6 +214,35 @@ window.addEventListener("DOMContentLoaded", () => {
     questionDiv.appendChild(block);
   });
 });
+function gradeQuiz() {
+  let correct = 0;
+  const explanationDiv = document.createElement("div");
+  explanationDiv.className = "result";
+  explanationDiv.innerHTML = "<h2>🧠 解説</h2>";
+
+  for (let i = 0; i < quizData.length; i++) {
+    const selected = document.querySelector(`input[name=q${i}]:checked`);
+    const userAnswer = selected ? selected.value : "（未回答）";
+    if (selected && selected.value === quizData[i].answer) correct++;
+
+    explanationDiv.innerHTML += `
+      <p><strong>Q${i + 1}:</strong><br>
+      あなたの答え: ${userAnswer}<br>
+      正解: ${quizData[i].answer}<br>
+      解説: ${explanationsLang[currentLang][i]}</p>`;
+  }
+
+  const percentage = ((correct / quizData.length) * 100).toFixed(1);
+  document.getElementById("score").innerHTML =
+    `あなたの正解数は <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）です！`;
+
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  let timeMessage = `⏱ 解答時間は ${elapsed} 秒です。`;
+  timeMessage += elapsed <= 600 ? "（時間内に解き終わりました✨）" : "（想定時間を超えています⚠️）";
+  document.getElementById("time-result").textContent = timeMessage;
+
+  document.body.appendChild(explanationDiv);
+}
 </script>
 </body>
 </html>
