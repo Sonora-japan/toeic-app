@@ -112,10 +112,7 @@
   function shareOnTwitter() {
     const scoreText = document.getElementById("score")?.textContent || "";
     const timeText = document.getElementById("time-result")?.textContent || "";
-    const tweetText = encodeURIComponent(`TOEIC Part 5 模擬問題に挑戦しました！
-${scoreText}
-${timeText}
-#TOEIC #英語学習 #模試 #推しTOEIC`);
+    const tweetText = encodeURIComponent(`TOEIC Part 5 模擬問題に挑戦しました！\n${scoreText}\n${timeText}\n#TOEIC #英語学習 #模試 #推しTOEIC`);
     const url = encodeURIComponent(window.location.href);
     const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${url}`;
     window.open(tweetUrl, '_blank');
@@ -129,6 +126,62 @@ ${timeText}
       link.href = canvas.toDataURL();
       link.click();
     });
+  }
+
+  // 解説表示処理
+  function showExplanations(quizData) {
+    const explanationDiv = document.createElement("div");
+    explanationDiv.className = "result";
+    explanationDiv.innerHTML = "<h2>🧠 解説</h2>";
+
+    quizData.forEach((item, index) => {
+      const selected = document.querySelector(`input[name=q${index}]:checked`);
+      const userAnswer = selected ? selected.value : "（未回答）";
+      explanationDiv.innerHTML += `<p><strong>Q${index + 1}:</strong><br>あなたの答え: ${userAnswer}<br>正解: ${item.answer}<br>解説: ${item.explanation}</p>`;
+    });
+
+    document.body.appendChild(explanationDiv);
+  }
+
+  // quizDataに解説を追加して使ってもらう前提
+  if (typeof quizData !== 'undefined') {
+    quizData.forEach((item, index) => {
+  const explanations = [
+    "'confirmed' は『確認された』という意味で、ビデオ判定に適しています。",
+    "時制は過去。文脈は過去なので 'entered' が適切。",
+    "'nationwide' は『全国的に』の意味で副詞句として使えます。",
+    "'be appealed' は受動態の形。決定が『上訴される』という意味。",
+    "'be given' で受動態。Ohtaniは与えられた側。",
+    "celebrated の後ろにくる前置詞は 'by'。〜によって祝われた、の意味。",
+    "'its' は無生物主語の所有を表す。stadium は単数なので 'its'。",
+    "'increased' は動詞。文法的に他の選択肢は不適。",
+    "'group' は人の集まりに広く使われる単語。",
+    "試合開始を 'declared'（宣言する）するのが自然な表現。",
+    "'continue to + 動詞の原形' で継続的な動作を表す。",
+    "試合後の出来事を述べているため 'after' が最も自然。",
+    "'CNN' は 'including' の目的語として自然。",
+    "The Tokyo series は単数扱いなので 'was'。",
+    "'was' は過去の受動態を形成。",
+    "主語が Ohtani（人）なので 'hit' がシンプルで正しい。",
+    "副詞 'loudly' が 'cheered' を修飾。",
+    "安全基準 'standards' に使う前置詞は 'under'（〜のもとで）。",
+    "within + 複数形で 'hours' が自然。",
+    "'performance' は名詞で、文法的に正しい補語になる。",
+    "'covered' は過去形、報道が完了している意味で正しい。",
+    "'show' は不定詞（to show）に続く動詞の原形で文法的に正しい。",
+    "主語が 'the game' で過去に起きたことなので 'boosted' が正しい。",
+    "目的を表す 'to attend'（〜するために）が自然。",
+    "後続の内容を強調する分詞構文 'highlighting' が自然。"
+  ];
+  item.explanation = explanations[index];
+});
+  }
+
+  // 既存のgradeQuiz関数に追記する想定
+  const originalGradeQuiz = gradeQuiz;
+  gradeQuiz = function() {
+    originalGradeQuiz();
+    showExplanations(quizData);
   }
 </script>
 
