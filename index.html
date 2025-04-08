@@ -158,7 +158,40 @@ const quizData = [
 };
 
 const translations = {
-  buttons: {
+  labels: {
+    ja: {
+      
+      yourAnswer: "あなたの答え",
+      correctAnswer: "正解",
+      explanation: "解説",
+      scoreSummary: "あなたの正解数は",
+      timeTaken: "⏱ 解答時間は",
+      withinTime: "（時間内に解き終わりました✨）",
+      overtime: "（想定時間を超えています⚠️）"
+    },
+    en: {
+      
+      yourAnswer: "Your Answer",
+      correctAnswer: "Correct Answer",
+      explanation: "Explanation",
+      scoreSummary: "Your correct answers:",
+      timeTaken: "⏱ Time Taken:",
+      withinTime: "(Finished within time ✨)",
+      overtime: "(Over expected time ⚠️)"
+    },
+    ko: {
+      
+      yourAnswer: "당신의 답변",
+      correctAnswer: "정답",
+      explanation: "해설",
+      scoreSummary: "정답 수:",
+      timeTaken: "⏱ 소요 시간:",
+      withinTime: "(시간 내에 완료 ✨)",
+      overtime: "(예상 시간을 초과 ⚠️)"
+    }
+  },
+  // 既存の translations の上に移動した labels により不要な buttons の重複データを除去
+buttons: {
     ja: {
       twitter: "🕊 X（Twitter）でシェア",
       instagram: "📸 Instagram用画像を保存"
