@@ -164,16 +164,19 @@ const translations = {
       instagram: "📸 Instagram用画像を保存"
     },
     en: {
+      seconds: "seconds",
       twitter: "🕊 Share on X (Twitter)",
       instagram: "📸 Save Image for Instagram"
     },
     ko: {
+      seconds: "초",
       twitter: "🕊 X (트위터)로 공유하기",
       instagram: "📸 인스타그램용 이미지 저장"
     }
   },
   labels: {
     ja: {
+      seconds: "秒",
       yourAnswer: "あなたの答え",
       correctAnswer: "正解",
       explanation: "解説",
@@ -245,7 +248,7 @@ let startTime = Date.now();
 const timerDisplay = document.getElementById("timer");
 setInterval(() => {
   const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  timerDisplay.textContent = `🕒 解答時間: ${elapsed}秒（目安: 600秒）`;
+  timerDisplay.textContent = `${translations.labels[currentLang].timeTaken} ${elapsed}${translations.labels[currentLang].seconds}（目安: 600${translations.labels[currentLang].seconds}）`）`;
 }, 1000);
 
 // ページ読み込み時に言語設定と問題描画を実行
@@ -291,7 +294,7 @@ function gradeQuiz() {
     `${translations.labels[currentLang].scoreSummary} <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）`;
 
   const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  let timeMessage = `${translations.labels[currentLang].timeTaken} ${elapsed} 秒です。`;
+  let timeMessage = `${translations.labels[currentLang].timeTaken} ${elapsed}${translations.labels[currentLang].seconds}です。`
   timeMessage += elapsed <= 600 ? translations.labels[currentLang].withinTime : translations.labels[currentLang].overtime;
   document.getElementById("time-result").textContent = timeMessage;
 
