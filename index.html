@@ -42,64 +42,7 @@
 </div>
 
 <!-- html2canvasライブラリ -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">function gradeQuiz() {
-  let correct = 0;
-  const explanationDiv = document.createElement("div");
-  explanationDiv.className = "result";
-  explanationDiv.innerHTML = "<h2>🧠 解説</h2>";
-
-  for (let i = 0; i < quizData.length; i++) {
-    const selected = document.querySelector(`input[name=q${i}]:checked`);
-    const userAnswer = selected ? selected.value : "（未回答）";
-    if (selected && selected.value === quizData[i].answer) correct++;
-
-    explanationDiv.innerHTML += `
-      <p><strong>Q${i + 1}:</strong><br>
-      あなたの答え: ${userAnswer}<br>
-      正解: ${quizData[i].answer}<br>
-      解説: ${explanationsLang[currentLang][i]}</p>`;
-  }
-
-  const percentage = ((correct / quizData.length) * 100).toFixed(1);
-  document.getElementById("score").innerHTML =
-    `あなたの正解数は <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）です！`;
-
-  const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  let timeMessage = `⏱ 解答時間は ${elapsed} 秒です。`;
-  timeMessage += elapsed <= 600 ? "（時間内に解き終わりました✨）" : "（想定時間を超えています⚠️）";
-  document.getElementById("time-result").textContent = timeMessage;
-
-  document.body.appendChild(explanationDiv);
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  const savedLang = localStorage.getItem("toeicLang");
-  if (savedLang && translations[savedLang]) {
-    setLanguage(savedLang);
-  } else {
-    setLanguage("ja");
-  }
-});
-// タイマー表示
-let startTime = Date.now();
-const timerDisplay = document.getElementById("timer");
-setInterval(() => {
-  const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  timerDisplay.textContent = `🕒 解答時間: ${elapsed}秒（目安: 600秒）`;
-}, 1000);
-
-// 問題をHTMLへ表示
-const questionDiv = document.getElementById("questions");
-quizData.forEach((item, index) => {
-  const block = document.createElement("div");
-  block.className = "question";
-  block.innerHTML = `<p><strong>Q${index + 1}:</strong> ${item.q}</p>` +
-    item.options.map(opt => `
-      <label><input type="radio" name="q${index}" value="${opt}"> ${opt}</label><br>`).join("");
-  questionDiv.appendChild(block);
-});
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
 <script>
 // 問題データ（25問）
@@ -241,6 +184,36 @@ function setLanguage(lang) {
   document.getElementById("share-text").textContent = translations[lang].shareText;
   document.querySelector(`#language-select select`).value = lang;
 }
+</script>
+<script>
+// タイマー表示
+let startTime = Date.now();
+const timerDisplay = document.getElementById("timer");
+setInterval(() => {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  timerDisplay.textContent = `🕒 解答時間: ${elapsed}秒（目安: 600秒）`;
+}, 1000);
+
+// ページ読み込み時に言語設定と問題描画を実行
+window.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("toeicLang");
+  if (savedLang && translations[savedLang]) {
+    setLanguage(savedLang);
+  } else {
+    setLanguage("ja");
+  }
+
+  // 問題表示処理
+  const questionDiv = document.getElementById("questions");
+  quizData.forEach((item, index) => {
+    const block = document.createElement("div");
+    block.className = "question";
+    block.innerHTML = `<p><strong>Q${index + 1}:</strong> ${item.q}</p>` +
+      item.options.map(opt => `
+        <label><input type="radio" name="q${index}" value="${opt}"> ${opt}</label><br>`).join("");
+    questionDiv.appendChild(block);
+  });
+});
 </script>
 </body>
 </html>
