@@ -43,7 +43,6 @@
 
 <!-- html2canvasライブラリ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
 <script>
 let currentLang = "ja";
 const quizData = [
@@ -73,7 +72,6 @@ const quizData = [
   { q: "Many international visitors traveled to Tokyo ______ the game.", options: ["attending", "attend", "to attend", "attended"], answer: "to attend" },
   { q: "Local businesses reported an increase in sales, ______ the event’s economic impact.", options: ["highlighting", "highlighted", "highlight", "to highlight"], answer: "highlighting" }
 ];
-const explanationsLang = {...};
 
 window.addEventListener("DOMContentLoaded", () => {
   const savedLang = localStorage.getItem("toeicLang");
@@ -83,6 +81,7 @@ window.addEventListener("DOMContentLoaded", () => {
     setLanguage("ja");
   }
 
+  // 問題表示処理
   const questionDiv = document.getElementById("questions");
   quizData.forEach((item, index) => {
     const block = document.createElement("div");
@@ -93,34 +92,8 @@ window.addEventListener("DOMContentLoaded", () => {
     questionDiv.appendChild(block);
   });
 });
-// 問題データ（25問）
-const quizData = [
-  { q: "Shohei Ohtani’s first home run of the season was ______ after a video review.", options: ["awarded", "confirmed", "announced", "received"], answer: "confirmed" },
-  { q: "The fans ______ the stadium before the game started to see Ohtani practice.", options: ["have entered", "entering", "entered", "will entering"], answer: "entered" },
-  { q: "The Tokyo Dome event was ______ broadcast across Japan.", options: ["nation", "national", "nationwide", "nationalism"], answer: "nationwide" },
-  { q: "The umpire's decision was final and could not be ______.", options: ["appeal", "appealing", "appealed", "appeals"], answer: "appealed" },
-  { q: "Ohtani was ______ the MVP for the 2025 season.", options: ["give", "gave", "giving", "given"], answer: "given" },
-  { q: "The Dodgers' victory in Tokyo was celebrated ______ fans around the world.", options: ["by", "at", "to", "with"], answer: "by" },
-  { q: "The stadium was filled to ______ capacity during the opening game.", options: ["its", "it", "their", "his"], answer: "its" },
-  { q: "Ohtani’s presence greatly ______ ticket sales.", options: ["increased", "enhancing", "growth", "expand"], answer: "increased" },
-  { q: "A ______ of reporters gathered to cover the game.", options: ["crew", "staff", "team", "group"], answer: "group" },
-  { q: "The announcer welcomed everyone and ______ the beginning of the match.", options: ["declared", "intended", "invented", "attended"], answer: "declared" },
-  { q: "Shohei Ohtani has continued to ______ fans with his skills and personality.", options: ["impress", "impressed", "impresses", "impressing"], answer: "impress" },
-  { q: "The team arranged a press conference ______ the game.", options: ["during", "while", "after", "since"], answer: "after" },
-  { q: "Ohtani was interviewed by several media outlets, including NHK and ______.", options: ["and", "or", "but", "CNN"], answer: "CNN" },
-  { q: "The Tokyo series ______ a major success for MLB.", options: ["was", "were", "are", "be"], answer: "was" },
-  { q: "The game was postponed due to heavy rain, but it ______ resumed later.", options: ["is", "has", "was", "will"], answer: "was" },
-  { q: "The pitcher threw a fastball that Ohtani ______ with ease.", options: ["hit", "hits", "hitting", "was hit"], answer: "hit" },
-  { q: "The crowd cheered ______ when the ball landed in the stands.", options: ["loud", "loudly", "louder", "more loud"], answer: "loudly" },
-  { q: "MLB officials stated that the Tokyo series was held ______ high safety standards.", options: ["with", "under", "over", "for"], answer: "under" },
-  { q: "Tickets for the event were sold out within ______.", options: ["hours", "hour", "a hours", "an hour"], answer: "hours" },
-  { q: "The manager said he was proud of the team’s ______.", options: ["perform", "performance", "performed", "performing"], answer: "performance" },
-  { q: "Japanese media extensively ______ the Tokyo games.", options: ["cover", "covering", "covered", "covers"], answer: "covered" },
-  { q: "Fans bought merchandise to ______ their support.", options: ["shown", "show", "shows", "showing"], answer: "show" },
-  { q: "The game not only entertained fans but also ______ tourism in Tokyo.", options: ["boost", "boosted", "boosting", "boosts"], answer: "boosted" },
-  { q: "Many international visitors traveled to Tokyo ______ the game.", options: ["attending", "attend", "to attend", "attended"], answer: "to attend" },
-  { q: "Local businesses reported an increase in sales, ______ the event’s economic impact.", options: ["highlighting", "highlighted", "highlight", "to highlight"], answer: "highlighting" }
-];
+});
+
   const explanationsLang = {
   ja: [
     "'confirmed' は『確認された』という意味で、ビデオ判定に適しています。",
