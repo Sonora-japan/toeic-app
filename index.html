@@ -80,6 +80,25 @@ window.addEventListener("DOMContentLoaded", () => {
     setLanguage("ja");
   }
 });
+// タイマー表示
+let startTime = Date.now();
+const timerDisplay = document.getElementById("timer");
+setInterval(() => {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  timerDisplay.textContent = `🕒 解答時間: ${elapsed}秒（目安: 600秒）`;
+}, 1000);
+
+// 問題をHTMLへ表示
+const questionDiv = document.getElementById("questions");
+quizData.forEach((item, index) => {
+  const block = document.createElement("div");
+  block.className = "question";
+  block.innerHTML = `<p><strong>Q${index + 1}:</strong> ${item.q}</p>` +
+    item.options.map(opt => `
+      <label><input type="radio" name="q${index}" value="${opt}"> ${opt}</label><br>`).join("");
+  questionDiv.appendChild(block);
+});
+
 </script>
 
 <script>
