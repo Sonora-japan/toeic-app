@@ -92,18 +92,30 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function gradeQuiz() {
   let correct = 0;
+  const scoreDiv = document.getElementById("score");
+  const questionDivs = document.querySelectorAll(".question");
+  questionDivs.forEach(div => div.querySelectorAll(".explanation")?.forEach(e => e.remove()));
+
   quizData.forEach((item, index) => {
     const selected = document.querySelector(`input[name=q${index}]:checked`);
+    const explanation = document.createElement("p");
+    explanation.className = "explanation";
+    explanation.style.fontWeight = "normal";
     if (selected && selected.value === item.answer) {
       correct++;
+      explanation.innerHTML = `<span class='correct'>✓</span> ${translations[currentLang].correct}：${item.answer}`;
+    } else {
+      explanation.innerHTML = `<span class='incorrect'>✗</span> ${translations[currentLang].correct}：${item.answer}` + (selected ? `（${translations[currentLang].yourAnswer}: ${selected.value}）` : `（${translations[currentLang].unanswered}）`);
     }
+    questionDivs[index].appendChild(explanation);
   });
+
   const percentage = ((correct / quizData.length) * 100).toFixed(1);
-  document.getElementById("score").innerHTML = `正解数は <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）です！`;
+  scoreDiv.innerHTML = `${translations[currentLang].correct}数は <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）です！`;
 
   const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  let timeMessage = `⏱ 解答時間は ${elapsed}秒です。`;
-  timeMessage += elapsed <= expectedTimeSec ? "（時間内に解き終わりました✨）" : "（想定時間を超えています⚠️）";
+  let timeMessage = `${translations[currentLang].timeTaken} ${elapsed}${translations[currentLang].seconds}`;
+  timeMessage += elapsed <= expectedTimeSec ? translations[currentLang].finished : translations[currentLang].overtime;
   document.getElementById("time-result").textContent = timeMessage;
 }
 
@@ -128,6 +140,72 @@ function captureResult() {
     link.click();
   });
 }
+const translations = {
+  ja: {
+    title: "📝 今週の時事TOEIC Part 5 模擬問題（全25問）",
+    submit: "解答を提出する",
+    shareTitle: "📤 結果をSNSでシェアしよう！",
+    shareText: "この模擬テストに挑戦したことを友達に知らせよう！",
+    twitter: "🕊 X（Twitter）でシェア",
+    instagram: "📸 Instagram用画像を保存",
+    timeTaken: "⏱ 解答時間は",
+    seconds: "秒です。",
+    targetTime: "（目安: 600秒）",
+    finished: "（時間内に解き終わりました✨）",
+    overtime: "（想定時間を超えています⚠️）",
+    correct: "正解",
+    yourAnswer: "あなたの答え",
+    unanswered: "未回答"
+  },
+  en: {
+    title: "📝 This Week's TOEIC Part 5 Practice (25 Questions)",
+    submit: "Submit Answers",
+    shareTitle: "📤 Share Your Results on Social Media!",
+    shareText: "Let your friends know you took this TOEIC practice!",
+    twitter: "🕊 Share on X (Twitter)",
+    instagram: "📸 Save Image for Instagram",
+    timeTaken: "⏱ Time Taken:",
+    seconds: " seconds",
+    targetTime: " (Target: 600 seconds)",
+    finished: " (Finished in time✨)",
+    overtime: " (Exceeded expected time⚠️)",
+    correct: "Correct",
+    yourAnswer: "Your answer",
+    unanswered: "Unanswered"
+  },
+  ko: {
+    title: "📝 이번 주 시사 TOEIC Part 5 모의시험 (총 25문제)",
+    submit: "답안 제출하기",
+    shareTitle: "📤 결과를 SNS에 공유하세요!",
+    shareText: "이 모의시험에 도전한 것을 친구들에게 알려보세요!",
+    twitter: "🕊 X (트위터)로 공유하기",
+    instagram: "📸 인스타그램용 이미지 저장",
+    timeTaken: "⏱ 소요 시간:",
+    seconds: "초",
+    targetTime: " (예상: 600초)",
+    finished: " (예상 시간 내 완료✨)",
+    overtime: " (예상 시간을 초과⚠️)",
+    correct: "정답",
+    yourAnswer: "당신의 답",
+    unanswered: "무응답"
+  }
+};
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem("toeicLang", lang);
+  document.getElementById("main-title").textContent = translations[lang].title;
+  document.getElementById("submit-button").textContent = translations[lang].submit;
+  document.getElementById("share-title").textContent = translations[lang].shareTitle;
+  document.getElementById("share-text").textContent = translations[lang].shareText;
+  document.getElementById("share-twitter").textContent = translations[lang].twitter;
+  document.getElementById("share-instagram").textContent = translations[lang].instagram;
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("toeicLang") || "ja";
+  setLanguage(savedLang);
+});
 </script>
 </body>
 </html>
