@@ -170,7 +170,7 @@ function gradeQuiz() {
   });
 
   const percentage = ((correct / quizData.length) * 100).toFixed(1);
-  scoreDiv.innerHTML = `${translations[currentLang].correct}数は <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）です！`;
+  scoreDiv.innerHTML = `${translations[currentLang].correct}: <span class="correct">${correct}</span> / ${quizData.length} (<strong>${percentage}%</strong>)`;
 
   const elapsed = Math.floor((Date.now() - startTime) / 1000);
   let timeMessage = `${translations[currentLang].timeTaken} ${elapsed}${translations[currentLang].seconds}`;
