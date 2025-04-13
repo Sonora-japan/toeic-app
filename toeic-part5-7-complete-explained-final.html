@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>TOEIC 模試 Part 5〜7 解説付き 完全版</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 2em; line-height: 1.6; }
+    .question { margin-bottom: 2em; }
+    .result { font-weight: bold; font-size: 1.2em; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+    .explanation { font-size: 0.95em; color: #333; margin-top: 0.5em; }
+    #timer { font-weight: bold; font-size: 1.1em; margin-bottom: 1em; }
+  </style>
+</head>
+<body>
+<h1>📝 TOEIC Part 5〜7 模試（全問解説付き）</h1>
+<div id="timer">🕒 解答時間: 0秒</div>
+<form id="toeic-form">
+  <!-- Part 5: 5 Questions -->
+  <h2>📘 Part 5: 短文穴埋め（5問）</h2>
+  <div class="question">
+    <p><strong>Q1:</strong> The CEO has decided to ______ the meeting until next week.</p>
+    <label><input type="radio" name="q0" value="postpone"> postpone</label><br>
+    <label><input type="radio" name="q0" value="postponed"> postponed</label><br>
+    <label><input type="radio" name="q0" value="postponing"> postponing</label><br>
+    <label><input type="radio" name="q0" value="postpones"> postpones</label><br>
+    <div class="explanation" id="explain0"></div>
+  </div>
+  <div class="question">
+    <p><strong>Q2:</strong> The report was submitted ______ the deadline.</p>
+    <label><input type="radio" name="q1" value="before"> before</label><br>
+    <label><input type="radio" name="q1" value="during"> during</label><br>
+    <label><input type="radio" name="q1" value="until"> until</label><br>
+    <label><input type="radio" name="q1" value="after"> after</label><br>
+    <div class="explanation" id="explain1"></div>
+  </div>
+  <div class="question">
+    <p><strong>Q3:</strong> Employees are encouraged to take their annual leave ______ December.</p>
+    <label><input type="radio" name="q2" value="in"> in</label><br>
+    <label><input type="radio" name="q2" value="on"> on</label><br>
+    <label><input type="radio" name="q2" value="at"> at</label><br>
+    <label><input type="radio" name="q2" value="by"> by</label><br>
+    <div class="explanation" id="explain2"></div>
+  </div>
+  <div class="question">
+    <p><strong>Q4:</strong> The technician ______ the machine before the inspection.</p>
+    <label><input type="radio" name="q3" value="repair"> repair</label><br>
+    <label><input type="radio" name="q3" value="repaired"> repaired</label><br>
+    <label><input type="radio" name="q3" value="repairs"> repairs</label><br>
+    <label><input type="radio" name="q3" value="repairing"> repairing</label><br>
+    <div class="explanation" id="explain3"></div>
+  </div>
+  <div class="question">
+    <p><strong>Q5:</strong> Please contact us if you have ______ questions.</p>
+    <label><input type="radio" name="q4" value="some"> some</label><br>
+    <label><input type="radio" name="q4" value="much"> much</label><br>
+    <label><input type="radio" name="q4" value="any"> any</label><br>
+    <label><input type="radio" name="q4" value="little"> little</label><br>
+    <div class="explanation" id="explain4"></div>
+  </div>
+
+  <!-- Part 6: Email passage with 4 blanks -->
+  <h2>📮 Part 6: 社内通知メール（空欄4つ）</h2>
+  <p><strong>Subject:</strong> New Security Policy Implementation<br>
+  Dear Team,<br>
+  As part of our commitment to protect company data, we are rolling out a new security policy. <strong>(1)</strong> All employees are required to reset their passwords every 90 days. <strong>(2)</strong> This change will take effect starting next Monday.<br>
+  <strong>(3)</strong> Your cooperation is greatly appreciated. <strong>(4)</strong></p>
+  <div class="question">
+    <p><strong>Q6:</strong> (1)</p>
+    <label><input type="radio" name="q5" value="Therefore"> Therefore</label><br>
+    <label><input type="radio" name="q5" value="As a result"> As a result</label><br>
+    <label><input type="radio" name="q5" value="For example"> For example</label><br>
+    <label><input type="radio" name="q5" value="In addition"> In addition</label><br>
+    <div class="explanation" id="explain5"></div>
+  </div>
+  <div class="question">
+    <p><strong>Q7:</strong> (2)</p>
+    <label><input type="radio" name="q6" value="This policy was approved last year."> This policy was approved last year.</label><br>
+    <label><input type="radio" name="q6" value="Please update your profiles soon."> Please update your profiles soon.</label><br>
+    <label><input type="radio" name="q6" value="You may ignore this message."> You may ignore this message.</label><br>
+    <label><input type="radio" name="q6" value="The IT team is available for support."> The IT team is available for support.</label><br>
+    <div class="explanation" id="explain6"></div>
+  </div>
+  <div class="question">
+    <p><strong>Q8:</strong> (3)</p>
+    <label><input type="radio" name="q7" value="For example"> For example</label><br>
+    <label><input type="radio" name="q7" value="Thank you"> Thank you</label><br>
+    <label><input type="radio" name="q7" value="On the contrary"> On the contrary</label><br>
+    <label><input type="radio" name="q7" value="To conclude"> To conclude</label><br>
+    <div class="explanation" id="explain7"></div>
+  </div>
+  <div class="question">
+    <p><strong>Q9:</strong> (4)</p>
+    <label><input type="radio" name="q8" value="Best regards, IT Department"> Best regards, IT Department</label><br>
+    <label><input type="radio" name="q8" value="Discounts are available now"> Discounts are available now</label><br>
+    <label><input type="radio" name="q8" value="Don’t forget to shop online"> Don’t forget to shop online</label><br>
+    <label><input type="radio" name="q8" value="More updates will be on the app"> More updates will be on the app</label><br>
+    <div class="explanation" id="explain8"></div>
+  </div>
+
+  <!-- Part 7: Advertisement -->
+  <h2>📰 Part 7: 広告文＋設問（3問）</h2>
+  <p><strong>Notice:</strong><br>
+  <strong>Grand Opening – Sakura Fitness Center</strong><br>
+  Join us on May 1 for the grand opening of our new state-of-the-art fitness facility! Free classes, membership discounts, and prize giveaways await. Visit sakurafitness.jp or call 03-0000-0000 for details.</p>
+  <div class="question">
+    <p><strong>Q10:</strong> What is the purpose of this notice?</p>
+    <label><input type="radio" name="q9" value="To advertise an opening event"> To advertise an opening event</label><br>
+    <label><input type="radio" name="q9" value="To announce a closure"> To announce a closure</label><br>
+    <label><input type="radio" name="q9" value="To report past performance"> To report past performance</label><br>
+    <label><input type="radio" name="q9" value="To explain membership rules"> To explain membership rules</label><br>
+    <div class="explanation" id="explain9"></div>
+  </div>
+  <div class="question">
+    <p><strong>Q11:</strong> What is included at the event?</p>
+    <label><input type="radio" name="q10" value="Free classes and prizes"> Free classes and prizes</label><br>
+    <label><input type="radio" name="q10" value="Childcare services"> Childcare services</label><br>
+    <label><input type="radio" name="q10" value="Personal trainers"> Personal trainers</label><br>
+    <label><input type="radio" name="q10" value="Lunch buffet"> Lunch buffet</label><br>
+    <div class="explanation" id="explain10"></div>
+  </div>
+  <div class="question">
+    <p><strong>Q12:</strong> Where can people get more information?</p>
+    <label><input type="radio" name="q11" value="Online or by phone"> Online or by phone</label><br>
+    <label><input type="radio" name="q11" value="At the local city hall"> At the local city hall</label><br>
+    <label><input type="radio" name="q11" value="In a printed flyer"> In a printed flyer</label><br>
+    <label><input type="radio" name="q11" value="From a neighbor"> From a neighbor</label><br>
+    <div class="explanation" id="explain11"></div>
+  </div>
+
+  <button type="button" onclick="gradeQuiz()">解答を提出する</button>
+</form>
+
+<div id="score" class="result"></div>
+<div id="time-result" class="result"></div>
+
+<script>
+const answers = ["postpone", "before", "in", "repaired", "any", "Therefore", "The IT team is available for support.", "Thank you", "Best regards, IT Department", "To advertise an opening event", "Free classes and prizes", "Online or by phone"];
+const explanations = [
+  "正解は 'postpone'。『has decided to』のあとは不定詞が続くので原形動詞を選びます。",
+  "'before' は「～の前に」。提出が締切前だったので 'before the deadline' が自然です。",
+  "'in December'（12月に）が最も一般的。月には前置詞 'in' を使います。",
+  "'repaired' は過去形。主語 'the technician' は過去に修理を完了していたのでこれが正解です。",
+  "'any' は疑問文・否定文・条件文で使われ、『何か質問があれば』という意味になります。",
+  "'Therefore' は因果関係。新ポリシーを導入するための理由を示して自然です。",
+  "'IT team is available for support.'（ITチームが対応）→実施される新方針に対しての案内として自然。",
+  "'Thank you' は締めの挨拶に自然。ほかは文の流れに不自然です。",
+  "'Best regards' でメールを結ぶのがビジネス文の定型です。",
+  "この広告はジムの開業イベントを宣伝しているので 'To advertise an opening event' が正解。",
+  "『Free classes』『prizes』が含まれているのが本文から読み取れます。",
+  "『Visit sakurafitness.jp or call』という記述から、ネットか電話で情報入手可能です。"
+];
+
+function gradeQuiz() {
+  let correct = 0;
+  for (let i = 0; i < answers.length; i++) {
+    const selected = document.querySelector(`input[name=q${i}]:checked`);
+    const explain = document.getElementById(`explain${i}`);
+    if (selected) {
+      if (selected.value === answers[i]) {
+        correct++;
+        explain.innerHTML = `<span class="correct">正解！</span><br>${explanations[i]}`;
+      } else {
+        explain.innerHTML = `<span class="incorrect">不正解</span><br>あなたの答え: ${selected.value}<br><span class="correct">正解: ${answers[i]}</span><br>${explanations[i]}`;
+      }
+    } else {
+      explain.innerHTML = `<span class="incorrect">未回答</span><br><span class="correct">正解: ${answers[i]}</span><br>${explanations[i]}`;
+    }
+  }
+  const percent = ((correct / answers.length) * 100).toFixed(1);
+  document.getElementById("score").innerHTML = `あなたの正解数は <span class="correct">${correct}</span> / ${answers.length}（<strong>${percent}%</strong>）です！`;
+
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  document.getElementById("time-result").textContent = `🕒 解答時間: ${elapsed} 秒`;
+}
+
+let startTime = Date.now();
+setInterval(() => {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  document.getElementById("timer").textContent = `🕒 解答時間: ${elapsed}秒`;
+}, 1000);
+</script>
+</body>
+</html>
