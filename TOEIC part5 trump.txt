@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEIC Part 5 - News Focus</title>
+    <style>
+        body { font-family: sans-serif; }
+        .question { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>TOEIC Part 5 - News Focus</h1>
+    <div id="questions">
+        <div class="question">
+            <p>1. The former president's legal team is preparing to <span class="blank">_________</span> a motion to dismiss the charges.</p>
+            <ol type="A">
+                <li>file</li>
+                <li>filing</li>
+                <li>filed</li>
+                <li>files</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>2. Despite the ongoing legal challenges, the former president's supporters remain <span class="blank">_________</span> loyal.</p>
+            <ol type="A">
+                <li>strongly</li>
+                <li>strong</li>
+                <li>strength</li>
+                <li>stronger</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>3. The court proceedings are expected to <span class="blank">_________</span> significant media attention.</p>
+            <ol type="A">
+                <li>attract</li>
+                <li>attraction</li>
+                <li>attractive</li>
+                <li>attracted</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>4. His statements have often been subject to intense <span class="blank">_________</span> from political analysts.</p>
+            <ol type="A">
+                <li>criticize</li>
+                <li>criticism</li>
+                <li>critical</li>
+                <li>critically</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>5. The former president's campaign team is focused on <span class="blank">_________</span> voter turnout in key states.</p>
+            <ol type="A">
+                <li>maximize</li>
+                <li>maximization</li>
+                <li>maximum</li>
+                <li>maximally</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>6. The <span class="blank">_________</span> of the former president's social media posts has been a topic of much discussion.</p>
+            <ol type="A">
+                <li>impact</li>
+                <li>impactful</li>
+                <li>impacted</li>
+                <li>impacting</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>7. The investigation is <span class="blank">_________</span> to conclude within the next few months.</p>
+            <ol type="A">
+                <li>expected</li>
+                <li>expect</li>
+                <li>expecting</li>
+                <li>expects</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>8. The former president's remarks were <span class="blank">_________</span> by many as controversial.</p>
+            <ol type="A">
+                <li>viewed</li>
+                <li>view</li>
+                <li>viewing</li>
+                <li>views</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>9. The legal team is working to <span class="blank">_________</span> the evidence presented in court.</p>
+            <ol type="A">
+                <li>challenge</li>
+                <li>challenging</li>
+                <li>challenged</li>
+                <li>challenges</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>10. The former president's public appearances have <span class="blank">_________</span> a large audience.</p>
+            <ol type="A">
+                <li>attracted</li>
+                <li>attract</li>
+                <li>attracting</li>
+                <li>attracts</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>11. The <span class="blank">_________</span> of the documents remains a key point of contention.</p>
+            <ol type="A">
+                <li>release</li>
+                <li>releasing</li>
+                <li>released</li>
+                <li>releases</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>12. He is <span class="blank">_________</span> to make a statement later this week.</p>
+            <ol type="A">
+                <li>scheduled</li>
+                <li>schedule</li>
+                <li>scheduling</li>
+                <li>schedules</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>13. The media is closely <span class="blank">_________</span> the developments in the case.</p>
+            <ol type="A">
+                <li>monitoring</li>
+                <li>monitor</li>
+                <li>monitored</li>
+                <li>monitors</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>14. The <span class="blank">_________</span> of the trial is expected to be lengthy.</p>
+            <ol type="A">
+                <li>duration</li>
+                <li>durational</li>
+                <li>durable</li>
+                <li>durably</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>15. The former president's legal team is preparing a <span class="blank">_________</span> defense.</p>
+            <ol type="A">
+                <li>vigorous</li>
+                <li>vigor</li>
+                <li>vigorously</li>
+                <li>vigorousness</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>16. The judge has <span class="blank">_________</span> several key rulings in the case.</p>
+            <ol type="A">
+                <li>issued</li>
+                <li>issue</li>
+                <li>issuing</li>
+                <li>issues</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>17. The <span class="blank">_________</span> of the investigation is crucial to the outcome of the trial.</p>
+            <ol type="A">
+                <li>outcome</li>
+                <li>outcomes</li>
+                <li>outgoing</li>
+                <li>outgo</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>18. His supporters continue to <span class="blank">_________</span> his claims.</p>
+            <ol type="A">
+                <li>support</li>
+                <li>supporting</li>
+                <li>supported</li>
+                <li>supports</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>19. The <span class="blank">_________</span> of the evidence is being questioned by the defense.</p>
+            <ol type="A">
+                <li>validity</li>
+                <li>valid</li>
+                <li>validly</li>
+                <li>validate</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>20. The former president is expected to <span class="blank">_________</span> a strong stance.</p>
+            <ol type="A">
+                <li>take</li>
+                <li>taking</li>
+                <li>taken</li>
+                <li>takes</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>21. The <span class="blank">_________</span> of the trial has been widely reported.</p>
+            <ol type="A">
+                <li>progress</li>
+                <li>progressing</li>
+                <li>progressed</li>
+                <li>progresses</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>22. The legal team is working to <span class="blank">_________</span> the charges.</p>
+            <ol type="A">
+                <li>refute</li>
+                <li>refuting</li>
+                <li>refuted</li>
+                <li>refutes</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>23. The <span class="blank">_________</span> of the documents is a key issue in the case.</p>
+            <ol type="A">
+                <li>authenticity</li>
+                <li>authentic</li>
+                <li>authentically</li>
+                <li>authenticate</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>24. The former president's statements have led to <span class="blank">_________</span> debate.</p>
+            <ol type="A">
+                <li>considerable</li>
+                <li>consideration</li>
+                <li>consider</li>
+                <li>considerably</li>
+            </ol>
+        </div>
+        <div class="question">
+            <p>25. The <span class="blank">_________</span> of the trial is being closely watched.</p>
+            <ol type="A">
+                <li>outcome</li>
+                <li>outcomes</li>
+                <li>outcoming</li>
+                <li>outgoing</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
