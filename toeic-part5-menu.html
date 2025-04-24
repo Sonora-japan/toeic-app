@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Part 5 模試一覧</title>
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    header {
+      background: #003366;
+      color: white;
+      padding: 1em;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    nav {
+      background: #0055a5;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0.5em 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 2em;
+      text-align: center;
+    }
+    .card {
+      background: white;
+      padding: 2em;
+      margin: 1em auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    a.button {
+      display: inline-block;
+      padding: 1em 2em;
+      background: #0070f3;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      margin-top: 1em;
+    }
+    a.button:hover {
+      background: #0051aa;
+    }
+  </style>
+</head>
+<body>
+
+<header>TOEIC模擬テストサービス</header>
+<nav>
+  <a href="index.html">🏠 ホーム</a>
+  <a href="toeic-part5-menu.html">📝 Part 5</a>
+  <a href="part6.html">📋 Part 6</a>
+  <a href="part7.html">📖 Part 7</a>
+  <a href="toeic-part5-7-complete-explained-final.html">🎯 通し模試</a>
+  <a href="login.html">👤 ログイン</a>
+</nav>
+
+<main>
+  <h1>📝 Part 5 模試一覧</h1>
+
+  <div class="card">
+    <h2>🎯 大谷翔平トピック模試</h2>
+    <p>スポーツニュースをベースにした25問構成。</p>
+    <a href="toeic-part5-25.html" class="button">挑戦する</a>
+  </div>
+
+  <div class="card">
+    <h2>🎯 トランプ関連模試</h2>
+    <p>前大統領に関連する最新時事で構成。25問。</p>
+    <a href="toeic-part5-trump.html" class="button">挑戦する</a>
+  </div>
+
+  <div class="card">
+    <h2>🎯 AIニュース模試（近日公開）</h2>
+    <p>ChatGPTなど、最新AIニュースに関連した模試。</p>
+    <a href="#" class="button" style="background: #ccc; cursor: not-allowed;">準備中</a>
+  </div>
+
+</main>
+</body>
+</html>
