@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>📝 大谷翔平 Part 5 模擬問題（全30問）</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; max-width: 800px; margin: auto; line-height: 1.6; background: #f9f9f9; }
+    h1, h2 { color: #003366; }
+    .question { margin-bottom: 2em; }
+    .result { font-weight: bold; font-size: 1.2em; margin-top: 2em; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+    #timer { font-weight: bold; font-size: 1.1em; margin-bottom: 1em; color: #555; }
+    button { font-size: 1em; padding: 0.6em 1.2em; border-radius: 8px; border: none; background: #0070f3; color: white; cursor: pointer; }
+    button:hover { background: #005bb5; }
+  </style>
+</head>
+<body>
+
+<h1>📝 大谷翔平 Part 5 模擬問題（全30問）</h1>
+<div id="timer">🕒 解答時間: 0秒</div>
+<form id="toeic-form">
+  <div id="questions"></div>
+  <button type="button" onclick="gradeQuiz()">解答を提出する</button>
+</form>
+
+<div id="score" class="result"></div>
+<div id="time-result" class="result"></div>
+
+<script>
+let startTime = Date.now();
+
+const quizData = [
+  { q: "Shohei Ohtani’s first home run of the season was ______ after a video review.", options: ["awarded", "confirmed", "announced", "received"], answer: "confirmed" },
+  { q: "The fans ______ the stadium before the game started to see Ohtani practice.", options: ["have entered", "entering", "entered", "will entering"], answer: "entered" },
+  { q: "The Tokyo Dome event was ______ broadcast across Japan.", options: ["nation", "national", "nationwide", "nationalism"], answer: "nationwide" },
+  { q: "The umpire's decision was final and could not be ______.", options: ["appeal", "appealing", "appealed", "appeals"], answer: "appealed" },
+  { q: "Ohtani was ______ the MVP for the 2025 season.", options: ["give", "gave", "giving", "given"], answer: "given" },
+  { q: "The Dodgers' victory in Tokyo was celebrated ______ fans around the world.", options: ["by", "at", "to", "with"], answer: "by" },
+  { q: "The stadium was filled to ______ capacity during the opening game.", options: ["its", "it", "their", "his"], answer: "its" },
+  { q: "Ohtani’s presence greatly ______ ticket sales.", options: ["increased", "enhancing", "growth", "expand"], answer: "increased" },
+  { q: "A ______ of reporters gathered to cover the game.", options: ["crew", "staff", "team", "group"], answer: "group" },
+  { q: "The announcer welcomed everyone and ______ the beginning of the match.", options: ["declared", "intended", "invented", "attended"], answer: "declared" },
+  { q: "Shohei Ohtani has continued to ______ fans with his skills and personality.", options: ["impress", "impressed", "impresses", "impressing"], answer: "impress" },
+  { q: "The team arranged a press conference ______ the game.", options: ["during", "while", "after", "since"], answer: "after" },
+  { q: "Ohtani was interviewed by several media outlets, including NHK and ______.", options: ["and", "or", "but", "CNN"], answer: "CNN" },
+  { q: "The Tokyo series ______ a major success for MLB.", options: ["was", "were", "are", "be"], answer: "was" },
+  { q: "The game was postponed due to heavy rain, but it ______ resumed later.", options: ["is", "has", "was", "will"], answer: "was" },
+  { q: "The pitcher threw a fastball that Ohtani ______ with ease.", options: ["hit", "hits", "hitting", "was hit"], answer: "hit" },
+  { q: "The crowd cheered ______ when the ball landed in the stands.", options: ["loud", "loudly", "louder", "more loud"], answer: "loudly" },
+  { q: "MLB officials stated that the Tokyo series was held ______ high safety standards.", options: ["with", "under", "over", "for"], answer: "under" },
+  { q: "Tickets for the event were sold out within ______.", options: ["hours", "hour", "a hours", "an hour"], answer: "hours" },
+  { q: "The manager said he was proud of the team’s ______.", options: ["perform", "performance", "performed", "performing"], answer: "performance" },
+  { q: "Japanese media extensively ______ the Tokyo games.", options: ["cover", "covering", "covered", "covers"], answer: "covered" },
+  { q: "Fans bought merchandise to ______ their support.", options: ["shown", "show", "shows", "showing"], answer: "show" },
+  { q: "The game not only entertained fans but also ______ tourism in Tokyo.", options: ["boost", "boosted", "boosting", "boosts"], answer: "boosted" },
+  { q: "Many international visitors traveled to Tokyo ______ the game.", options: ["attending", "attend", "to attend", "attended"], answer: "to attend" },
+  { q: "Local businesses reported an increase in sales, ______ the event’s economic impact.", options: ["highlighting", "highlighted", "highlight", "to highlight"], answer: "highlighting" },
+  { q: "Shohei Ohtani signed a new contract, making him the ______-paid player in baseball history.", options: ["high", "higher", "highest", "highly"], answer: "highest" },
+  { q: "The team held a press conference ______ the announcement of Ohtani's new role.", options: ["regards", "regarding", "regard", "regarded"], answer: "regarding" },
+  { q: "The fans were ______ when Ohtani hit the game-winning home run.", options: ["excited", "excite", "exciting", "excitement"], answer: "excited" },
+  { q: "Ohtani’s training regimen is known for being both intense and ______.", options: ["effect", "effective", "affect", "effort"], answer: "effective" },
+  { q: "A documentary about Ohtani’s career will be ______ on national television next month.", options: ["air", "aired", "airs", "airing"], answer: "aired" }
+];
+
+const questionDiv = document.getElementById("questions");
+const timerDisplay = document.getElementById("timer");
+const expectedTimeSec = 900;
+
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  timerDisplay.textContent = `🕒 解答時間: ${elapsed}秒（目安: 900秒）`;
+}
+setInterval(updateTimer, 1000);
+
+quizData.forEach((item, index) => {
+  const block = document.createElement("div");
+  block.className = "question";
+  block.innerHTML = `<p><strong>Q${index + 1}:</strong> ${item.q}</p>` +
+    item.options.map((opt) => `<label><input type="radio" name="q${index}" value="${opt}"> ${opt}</label><br>`).join("");
+  questionDiv.appendChild(block);
+});
+
+function gradeQuiz() {
+  let correct = 0;
+  quizData.forEach((item, index) => {
+    const selected = document.querySelector(`input[name=q${index}]:checked`);
+    if (selected && selected.value === item.answer) {
+      correct++;
+    }
+  });
+  const percentage = ((correct / quizData.length) * 100).toFixed(1);
+  document.getElementById("score").innerHTML = `あなたの正解数は <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）です！`;
+
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  let timeMessage = `⏱ 解答時間は ${elapsed} 秒です。`;
+  if (elapsed <= expectedTimeSec) {
+    timeMessage += "（時間内に解き終わりました✨）";
+  } else {
+    timeMessage += "（想定時間を超えています⚠️）";
+  }
+  document.getElementById("time-result").textContent = timeMessage;
+}
+</script>
+
+<div class="result">
+  <h2>📤 結果をSNSでシェアしよう！</h2>
+  <p>この模擬テストに挑戦したことを友達に知らせよう！</p>
+  <button onclick="shareOnTwitter()">🕊 X（Twitter）でシェア</button>
+  <button onclick="captureResult()">📸 Instagram用画像を保存</button>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+function shareOnTwitter() {
+  const scoreText = document.getElementById("score")?.textContent || "";
+  const timeText = document.getElementById("time-result")?.textContent || "";
+  const tweetText = encodeURIComponent(`TOEIC Part 5 模擬問題に挑戦しました！\n${scoreText}\n${timeText}\n#TOEIC #英語学習`);
+  const url = encodeURIComponent(window.location.href);
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${url}`;
+  window.open(tweetUrl, '_blank');
+}
+function captureResult() {
+  const resultArea = document.querySelector('.result');
+  html2canvas(resultArea).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'toeic_result.png';
+    link.href = canvas.toDataURL();
+    link.click();
+  });
+}
+</script>
+</body>
+</html>
