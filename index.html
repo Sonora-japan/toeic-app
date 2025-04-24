@@ -4,7 +4,35 @@
   <meta charset="UTF-8">
   <title>TOEIC 模擬テスト選択</title>
   <style>
-    body { font-family: sans-serif; padding: 3em; text-align: center; background: #f4f4f4; }
+    body { font-family: sans-serif; padding: 0; margin: 0; background: #f4f4f4; }
+    header {
+      background: #003366;
+      color: white;
+      padding: 1em;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+    nav {
+      background: #0055a5;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0.5em 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1em;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 3em;
+      text-align: center;
+    }
     h1 { color: #003366; margin-bottom: 2em; }
     .card {
       background: white;
@@ -54,31 +82,41 @@
   </script>
 </head>
 <body>
-  <h1 data-lang data-lang-ja="📝 TOEIC 模擬テストメニュー" data-lang-en="📝 TOEIC Practice Test Menu" data-lang-ko="📝 TOEIC 모의고사 메뉴">📝 TOEIC 模擬テストメニュー</h1>
+  <header>TOEIC模擬テストサービス</header>
+  <nav>
+    <a href="index.html">🏠 ホーム</a>
+    <a href="toeic-part5-25.html">📝 模試</a>
+    <a href="training.html">💪 トレーニング</a>
+    <a href="review.html">🔁 復習</a>
+    <a href="record.html">📈 記録</a>
+    <a href="login.html">👤 ログイン</a>
+  </nav>
+  <main>
+    <h1 data-lang data-lang-ja="📝 TOEIC 模擬テストメニュー" data-lang-en="📝 TOEIC Practice Test Menu" data-lang-ko="📝 TOEIC 모의고사 메뉴">📝 TOEIC 模擬テストメニュー</h1>
 
-  <div class="lang-switch">
-    <button onclick="setLanguage('ja')">日本語</button>
-    <button onclick="setLanguage('en')">English</button>
-    <button onclick="setLanguage('ko')">한국어</button>
-  </div>
+    <div class="lang-switch">
+      <button onclick="setLanguage('ja')">日本語</button>
+      <button onclick="setLanguage('en')">English</button>
+      <button onclick="setLanguage('ko')">한국어</button>
+    </div>
 
-  <div class="card">
-    <h2 data-lang data-lang-ja="🎯 本格25問模試（大谷翔平トピック）" data-lang-en="🎯 Full 25-Question Mock Test (Ohtani Topic)" data-lang-ko="🎯 25문 모의고사 (오타니 주제)">🎯 本格25問模試（大谷翔平トピック）</h2>
-    <p data-lang data-lang-ja="実際のTOEIC形式に近い25問の模擬問題を体験できます。" data-lang-en="Experience 25 questions in actual TOEIC format." data-lang-ko="실제 TOEIC 형식에 가까운 25문제를 체험할 수 있습니다.">実際のTOEIC形式に近い25問の模擬問題を体験できます。</p>
-    <a class="button" href="toeic-part5-25.html" data-lang data-lang-ja="挑戦する" data-lang-en="Start Test" data-lang-ko="도전하기">挑戦する</a>
-  </div>
+    <div class="card">
+      <h2>🎯 本格25問模試（大谷翔平トピック）</h2>
+      <p>実際のTOEIC形式に近い25問の模擬問題を体験できます。</p>
+      <a class="button" href="toeic-part5-25.html">挑戦する</a>
+    </div>
 
-  <div class="card">
-    <h2 data-lang data-lang-ja="📆 今週の5問チャレンジ（話題のニュース）" data-lang-en="📆 Weekly 5-Question Challenge (Current Events)" data-lang-ko="📆 이번 주 5문제 도전 (시사 뉴스)">📆 今週の5問チャレンジ（話題のニュース）</h2>
-    <p data-lang data-lang-ja="時事ネタに基づいた5問のPart 5練習問題。気軽に取り組めます。" data-lang-en="Practice 5 Part 5 questions based on hot topics. Easy to try!" data-lang-ko="시사 이슈를 바탕으로 한 5문제 Part 5 연습문제. 부담 없이 도전!">時事ネタに基づいた5問のPart 5練習問題。気軽に取り組めます。</p>
-    <a class="button" href="toeic-part5-weekly.html" data-lang data-lang-ja="今週の問題を見る" data-lang-en="Try This Week's Test" data-lang-ko="이번 주 문제 보기">今週の問題を見る</a>
-  </div>
+    <div class="card" style="display: none;">
+      <h2>📆 今週の5問チャレンジ（話題のニュース）</h2>
+      <p>時事ネタに基づいた5問のPart 5練習問題。気軽に取り組めます。</p>
+      <a class="button" href="toeic-part5-weekly.html">今週の問題を見る</a>
+    </div>
 
-  <div class="card">
-    <h2 data-lang data-lang-ja="🧠 本格模試：Part 5〜7（解説付き）" data-lang-en="🧠 Full Practice: Part 5–7 (With Explanations)" data-lang-ko="🧠 본격 모의고사: Part 5~7 (해설 포함)">🧠 本格模試：Part 5〜7（解説付き）</h2>
-    <p data-lang data-lang-ja="文法・語彙・長文読解すべて対応した模試（12問）。解説付きで復習も◎" data-lang-en="Covers grammar, vocabulary, and reading. 12 questions with explanations!" data-lang-ko="문법, 어휘, 독해 포함 12문제. 해설도 제공!">文法・語彙・長文読解すべて対応した模試（12問）。解説付きで復習も◎</p>
-    <a class="button" href="toeic-part5-7-complete-explained-final.html" data-lang data-lang-ja="挑戦する" data-lang-en="Start Test" data-lang-ko="도전하기">挑戦する</a>
-  </div>
-
+    <div class="card">
+      <h2>🧠 本格模試：Part 5〜7（解説付き）</h2>
+      <p>文法・語彙・長文読解すべて対応した模試（12問）。解説付きで復習も◎</p>
+      <a class="button" href="toeic-part5-7-complete-explained-final.html">挑戦する</a>
+    </div>
+  </main>
 </body>
 </html>
