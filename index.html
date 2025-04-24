@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>TOEIC 模擬テスト選択</title>
+  <title>TOEIC 模擬テストメニュー</title>
   <style>
     body { font-family: sans-serif; padding: 0; margin: 0; background: #f4f4f4; }
     header {
@@ -54,68 +54,42 @@
     a.button:hover {
       background: #0051aa;
     }
-    .lang-switch { margin-bottom: 2em; }
-    .lang-switch button {
-      padding: 0.75em 1.5em;
-      margin: 0 0.5em;
-      border: none;
-      border-radius: 8px;
-      background: #ccc;
-      color: #000;
-      font-weight: bold;
-      min-width: 100px;
-      cursor: pointer;
-      font-size: 1em;
-      line-height: 1.2;
-    }
-    .lang-switch button:hover {
-      background: #aaa;
-    }
   </style>
-  <script>
-    function setLanguage(lang) {
-      const elements = document.querySelectorAll("[data-lang]");
-      elements.forEach(el => {
-        el.innerText = el.getAttribute(`data-lang-${lang}`);
-      });
-    }
-  </script>
 </head>
 <body>
   <header>TOEIC模擬テストサービス</header>
   <nav>
     <a href="index.html">🏠 ホーム</a>
-    <a href="toeic-part5-25.html">📝 模試</a>
-    <a href="training.html">💪 トレーニング</a>
-    <a href="review.html">🔁 復習</a>
-    <a href="record.html">📈 記録</a>
+    <a href="toeic-part5-25.html">📝 Part 5</a>
+    <a href="part6.html">📋 Part 6</a>
+    <a href="part7.html">📖 Part 7</a>
+    <a href="toeic-part5-7-complete-explained-final.html">🎯 通し模試</a>
     <a href="login.html">👤 ログイン</a>
   </nav>
   <main>
-    <h1 data-lang data-lang-ja="📝 TOEIC 模擬テストメニュー" data-lang-en="📝 TOEIC Practice Test Menu" data-lang-ko="📝 TOEIC 모의고사 메뉴">📝 TOEIC 模擬テストメニュー</h1>
-
-    <div class="lang-switch">
-      <button onclick="setLanguage('ja')">日本語</button>
-      <button onclick="setLanguage('en')">English</button>
-      <button onclick="setLanguage('ko')">한국어</button>
-    </div>
+    <h1>📝 TOEIC 模擬テスト メニュー</h1>
 
     <div class="card">
-      <h2>🎯 本格25問模試（大谷翔平トピック）</h2>
-      <p>実際のTOEIC形式に近い25問の模擬問題を体験できます。</p>
+      <h2>📝 Part 5 - 短文穴埋め問題</h2>
+      <p>文法や語彙の知識を問う短文形式の問題。全25問。</p>
       <a class="button" href="toeic-part5-25.html">挑戦する</a>
     </div>
 
-    <!-- 今週の5問チャレンジを一時非表示 -->
-    <div class="card" style="display: none;">
-      <h2>📆 今週の5問チャレンジ（話題のニュース）</h2>
-      <p>時事ネタに基づいた5問のPart 5練習問題。気軽に取り組めます。</p>
-      <a class="button" href="toeic-part5-weekly.html">今週の問題を見る</a>
+    <div class="card">
+      <h2>📋 Part 6 - 長文穴埋め問題</h2>
+      <p>パラグラフ単位の文脈を問う問題。文挿入や語彙文法を含みます。</p>
+      <a class="button" href="part6.html">挑戦する</a>
     </div>
 
     <div class="card">
-      <h2>🧠 本格模試：Part 5〜7（解説付き）</h2>
-      <p>文法・語彙・長文読解すべて対応した模試（12問）。解説付きで復習も◎</p>
+      <h2>📖 Part 7 - 読解問題</h2>
+      <p>長文読解（シングル/マルチパッセージ）に挑戦できます。</p>
+      <a class="button" href="part7.html">挑戦する</a>
+    </div>
+
+    <div class="card">
+      <h2>🎯 通し模試（Part 5〜7）</h2>
+      <p>実際のTOEICに近い形式で連続出題されます。全12問。</p>
       <a class="button" href="toeic-part5-7-complete-explained-final.html">挑戦する</a>
     </div>
   </main>
