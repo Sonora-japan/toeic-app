@@ -1,399 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOEIC Part 5 - Set 1: Current News Topics</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        h2 {
-            color: #3498db;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-        .question {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-        }
-        .options {
-            margin-left: 20px;
-        }
-        .answer {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #27ae60;
-            display: none;
-        }
-        .show-answers {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            display: block;
-            margin: 20px auto;
-        }
-        .show-answers:hover {
-            background-color: #2980b9;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>📝 TOEIC Part 5 - Current News Topics（全30問）</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; max-width: 800px; margin: auto; line-height: 1.6; background: #f9f9f9; }
+    h1, h2 { color: #003366; }
+    .question { margin-bottom: 2em; }
+    .result { font-weight: bold; font-size: 1.2em; margin-top: 2em; }
+    .correct { color: green; }
+    .incorrect { color: red; }
+    #timer { font-weight: bold; font-size: 1.1em; margin-bottom: 1em; color: #555; }
+    button { font-size: 1em; padding: 0.6em 1.2em; border-radius: 8px; border: none; background: #0070f3; color: white; cursor: pointer; }
+    button:hover { background: #005bb5; }
+  </style>
 </head>
 <body>
-    <h1>TOEIC Part 5 - Set 1: Current News Topics</h1>
-    <p>Choose the word or phrase that best completes each sentence.</p>
 
-    <div class="question">
-        <p><strong>1.</strong> Following the widespread flooding in Southeast Asia, international aid organizations rapidly ________ emergency supplies to affected regions.</p>
-        <div class="options">
-            <p>A) deployed</p>
-            <p>B) deploying</p>
-            <p>C) to deploy</p>
-            <p>D) deploy</p>
-        </div>
-        <div class="answer">Answer: A) deployed</div>
-    </div>
+<h1>📝 TOEIC Part 5 - Current News Topics（全30問）</h1>
+<div id="timer">🕒 解答時間: 0秒</div>
+<form id="toeic-form">
+  <div id="questions"></div>
+  <button type="button" onclick="gradeQuiz()">解答を提出する</button>
+</form>
 
-    <div class="question">
-        <p><strong>2.</strong> The CEO's controversial remarks about artificial intelligence regulation ________ widespread debate among tech industry leaders.</p>
-        <div class="options">
-            <p>A) sparking</p>
-            <p>B) sparked</p>
-            <p>C) spark</p>
-            <p>D) to spark</p>
-        </div>
-        <div class="answer">Answer: B) sparked</div>
-    </div>
+<div id="score" class="result"></div>
+<div id="time-result" class="result"></div>
 
-    <div class="question">
-        <p><strong>3.</strong> The pharmaceutical company announced that its new vaccine ________ successful in late-stage clinical trials, showing 94% efficacy.</p>
-        <div class="options">
-            <p>A) is</p>
-            <p>B) was</p>
-            <p>C) being</p>
-            <p>D) to be</p>
-        </div>
-        <div class="answer">Answer: B) was</div>
-    </div>
+<script>
+let startTime = Date.now();
 
-    <div class="question">
-        <p><strong>4.</strong> The Paris Climate Agreement, ________ nearly 200 countries have now ratified, aims to limit global warming to well below 2 degrees Celsius.</p>
-        <div class="options">
-            <p>A) which</p>
-            <p>B) who</p>
-            <p>C) where</p>
-            <p>D) when</p>
-        </div>
-        <div class="answer">Answer: A) which</div>
-    </div>
+const quizData = [
+  { q: "Following the widespread flooding in Southeast Asia, international aid organizations rapidly ______ emergency supplies to affected regions.", options: ["deployed", "deploying", "to deploy", "deploy"], answer: "deployed" },
+  { q: "The CEO's controversial remarks about artificial intelligence regulation ______ widespread debate among tech industry leaders.", options: ["sparking", "sparked", "spark", "to spark"], answer: "sparked" },
+  { q: "The pharmaceutical company announced that its new vaccine ______ successful in late-stage clinical trials, showing 94% efficacy.", options: ["is", "was", "being", "to be"], answer: "was" },
+  { q: "The Paris Climate Agreement, ______ nearly 200 countries have now ratified, aims to limit global warming to well below 2 degrees Celsius.", options: ["which", "who", "where", "when"], answer: "which" },
+  { q: "Despite initial skepticism, the central bank's new monetary policy has ______ effective in controlling inflation.", options: ["proved", "proving", "prove", "proven"], answer: "proven" },
+  { q: "The technology company's stock price rose sharply after ______ better-than-expected quarterly earnings.", options: ["reporting", "reported", "report", "to report"], answer: "reporting" },
+  { q: "Government officials announced that renewable energy sources now ______ 40% of the country's electricity generation.", options: ["account for", "accounting for", "accounts for", "accounted for"], answer: "account for" },
+  { q: "Several major airlines ______ new biofuel initiatives to reduce their carbon footprint in response to climate concerns.", options: ["have launched", "launching", "has launched", "to launch"], answer: "have launched" },
+  { q: "The international space station, ______ has been continuously inhabited for over two decades, is scheduled for a major upgrade next year.", options: ["who", "whom", "which", "whose"], answer: "which" },
+  { q: "The diplomatic summit, originally ______ for June, has been postponed until September due to ongoing security concerns.", options: ["schedule", "scheduling", "scheduled", "schedules"], answer: "scheduled" },
+  { q: "______ the recent advancements in artificial intelligence, many routine jobs could become automated within the next decade.", options: ["Because", "Given", "Despite", "Unless"], answer: "Given" },
+  { q: "The financial markets reacted positively to the central bank's decision to ______ interest rates for the third consecutive quarter.", options: ["reducing", "reduced", "reduce", "reduction"], answer: "reduce" },
+  { q: "The newly elected president ______ comprehensive immigration reform as her top legislative priority during yesterday's press conference.", options: ["identifying", "identified", "identifies", "identify"], answer: "identified" },
+  { q: "The global semiconductor shortage has ______ numerous industries, from automotive manufacturing to consumer electronics.", options: ["affected", "affecting", "affects", "affect"], answer: "affected" },
+  { q: "The healthcare startup received significant investment after ______ a groundbreaking diagnostic tool that can detect multiple conditions from a single blood sample.", options: ["developing", "developed", "develops", "development"], answer: "developing" },
+  { q: "Many urban residents are ______ to suburban areas as remote work policies become permanent at major companies.", options: ["relocate", "relocating", "relocated", "relocation"], answer: "relocating" },
+  { q: "The United Nations report on climate change ______ immediate action to reduce carbon emissions worldwide.", options: ["calls for", "calling for", "called for", "to call for"], answer: "calls for" },
+  { q: "The multinational trade agreement, ______ was signed last month, eliminates tariffs on over 1,000 products between the participating nations.", options: ["it", "that", "which", "who"], answer: "which" },
+  { q: "Scientists have developed a new carbon capture technology that can ______ atmospheric CO2 levels more efficiently than previous methods.", options: ["reducing", "reduced", "reduce", "reduction"], answer: "reduce" },
+  { q: "The cybersecurity breach ______ to have originated from a sophisticated hacking group based in Eastern Europe.", options: ["believes", "believed", "believing", "is believed"], answer: "is believed" },
+  { q: "The tech company's CEO announced that the new smartphone model will be ______ next month at their annual product showcase.", options: ["unveiling", "unveiled", "unveil", "unveils"], answer: "unveiled" },
+  { q: "______ the sudden rise in global oil prices, many airlines have temporarily increased their fuel surcharges.", options: ["Following", "Follow", "Followed", "To follow"], answer: "Following" },
+  { q: "The company's board of directors unanimously ______ the proposal to merge with their main competitor.", options: ["approve", "approving", "approved", "approval"], answer: "approved" },
+  { q: "The environmental protection agency ______ stricter regulations on industrial waste disposal to take effect next year.", options: ["has announced", "announcing", "announced", "announce"], answer: "has announced" },
+  { q: "The research study, ______ results were published in a leading medical journal, suggests a potential breakthrough in Alzheimer's treatment.", options: ["who", "whom", "which", "whose"], answer: "whose" },
+  { q: "The government's new initiative aims to provide high-speed internet access to rural communities that have traditionally been ______ underserved.", options: ["significantly", "significance", "significant", "significantly to"], answer: "significantly" },
+  { q: "The Olympic Committee ______ that the next Winter Games will incorporate several new sporting events.", options: ["confirm", "confirming", "confirmed", "confirms"], answer: "confirmed" },
+  { q: "The retail industry is rapidly ______ to changing consumer behaviors, with many stores expanding their online presence.", options: ["adapting", "adapted", "adapts", "adapt"], answer: "adapting" },
+  { q: "Electric vehicles are becoming increasingly popular as battery technology ______ and charging infrastructure expands.", options: ["improves", "improved", "improving", "improve"], answer: "improves" },
+  { q: "The international aid package, ______ was approved last week, will provide critical resources to regions affected by the recent natural disasters.", options: ["it", "who", "which", "what"], answer: "which" }
+];
 
-    <div class="question">
-        <p><strong>5.</strong> Despite initial skepticism, the central bank's new monetary policy has ________ effective in controlling inflation.</p>
-        <div class="options">
-            <p>A) proved</p>
-            <p>B) proving</p>
-            <p>C) prove</p>
-            <p>D) proven</p>
-        </div>
-        <div class="answer">Answer: D) proven</div>
-    </div>
+const questionDiv = document.getElementById("questions");
+const timerDisplay = document.getElementById("timer");
+const expectedTimeSec = 900;
 
-    <div class="question">
-        <p><strong>6.</strong> The technology company's stock price rose sharply after ________ better-than-expected quarterly earnings.</p>
-        <div class="options">
-            <p>A) reporting</p>
-            <p>B) reported</p>
-            <p>C) report</p>
-            <p>D) to report</p>
-        </div>
-        <div class="answer">Answer: A) reporting</div>
-    </div>
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  timerDisplay.textContent = `🕒 解答時間: ${elapsed}秒（目安: 900秒）`;
+}
+setInterval(updateTimer, 1000);
 
-    <div class="question">
-        <p><strong>7.</strong> Government officials announced that renewable energy sources now ________ 40% of the country's electricity generation.</p>
-        <div class="options">
-            <p>A) account for</p>
-            <p>B) accounting for</p>
-            <p>C) accounts for</p>
-            <p>D) accounted for</p>
-        </div>
-        <div class="answer">Answer: A) account for</div>
-    </div>
+quizData.forEach((item, index) => {
+  const block = document.createElement("div");
+  block.className = "question";
+  block.innerHTML = `<p><strong>Q${index + 1}:</strong> ${item.q}</p>` +
+    item.options.map((opt) => `<label><input type="radio" name="q${index}" value="${opt}"> ${opt}</label><br>`).join("");
+  questionDiv.appendChild(block);
+});
 
-    <div class="question">
-        <p><strong>8.</strong> Several major airlines ________ new biofuel initiatives to reduce their carbon footprint in response to climate concerns.</p>
-        <div class="options">
-            <p>A) have launched</p>
-            <p>B) launching</p>
-            <p>C) has launched</p>
-            <p>D) to launch</p>
-        </div>
-        <div class="answer">Answer: A) have launched</div>
-    </div>
+function gradeQuiz() {
+  let correct = 0;
+  quizData.forEach((item, index) => {
+    const selected = document.querySelector(`input[name=q${index}]:checked`);
+    if (selected && selected.value === item.answer) {
+      correct++;
+    }
+  });
+  const percentage = ((correct / quizData.length) * 100).toFixed(1);
+  document.getElementById("score").innerHTML = `あなたの正解数は <span class="correct">${correct}</span> / ${quizData.length}（<strong>${percentage}%</strong>）です！`;
 
-    <div class="question">
-        <p><strong>9.</strong> The international space station, ________ has been continuously inhabited for over two decades, is scheduled for a major upgrade next year.</p>
-        <div class="options">
-            <p>A) who</p>
-            <p>B) whom</p>
-            <p>C) which</p>
-            <p>D) whose</p>
-        </div>
-        <div class="answer">Answer: C) which</div>
-    </div>
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  let timeMessage = `⏱ 解答時間は ${elapsed} 秒です。`;
+  if (elapsed <= expectedTimeSec) {
+    timeMessage += "（時間内に解き終わりました✨）";
+  } else {
+    timeMessage += "（想定時間を超えています⚠️）";
+  }
+  document.getElementById("time-result").textContent = timeMessage;
+}
+</script>
 
-    <div class="question">
-        <p><strong>10.</strong> The diplomatic summit, originally ________ for June, has been postponed until September due to ongoing security concerns.</p>
-        <div class="options">
-            <p>A) schedule</p>
-            <p>B) scheduling</p>
-            <p>C) scheduled</p>
-            <p>D) schedules</p>
-        </div>
-        <div class="answer">Answer: C) scheduled</div>
-    </div>
+<div class="result">
+  <h2>📤 結果をSNSでシェアしよう！</h2>
+  <p>この模擬テストに挑戦したことを友達に知らせよう！</p>
+  <button onclick="shareOnTwitter()">🕊 X（Twitter）でシェア</button>
+  <button onclick="captureResult()">📸 Instagram用画像を保存</button>
+</div>
 
-    <div class="question">
-        <p><strong>11.</strong> ________ the recent advancements in artificial intelligence, many routine jobs could become automated within the next decade.</p>
-        <div class="options">
-            <p>A) Because</p>
-            <p>B) Given</p>
-            <p>C) Despite</p>
-            <p>D) Unless</p>
-        </div>
-        <div class="answer">Answer: B) Given</div>
-    </div>
-
-    <div class="question">
-        <p><strong>12.</strong> The financial markets reacted positively to the central bank's decision to ________ interest rates for the third consecutive quarter.</p>
-        <div class="options">
-            <p>A) reducing</p>
-            <p>B) reduced</p>
-            <p>C) reduce</p>
-            <p>D) reduction</p>
-        </div>
-        <div class="answer">Answer: C) reduce</div>
-    </div>
-
-    <div class="question">
-        <p><strong>13.</strong> The newly elected president ________ comprehensive immigration reform as her top legislative priority during yesterday's press conference.</p>
-        <div class="options">
-            <p>A) identifying</p>
-            <p>B) identified</p>
-            <p>C) identifies</p>
-            <p>D) identify</p>
-        </div>
-        <div class="answer">Answer: B) identified</div>
-    </div>
-
-    <div class="question">
-        <p><strong>14.</strong> The global semiconductor shortage has ________ numerous industries, from automotive manufacturing to consumer electronics.</p>
-        <div class="options">
-            <p>A) affected</p>
-            <p>B) affecting</p>
-            <p>C) affects</p>
-            <p>D) affect</p>
-        </div>
-        <div class="answer">Answer: A) affected</div>
-    </div>
-
-    <div class="question">
-        <p><strong>15.</strong> The healthcare startup received significant investment after ________ a groundbreaking diagnostic tool that can detect multiple conditions from a single blood sample.</p>
-        <div class="options">
-            <p>A) developing</p>
-            <p>B) developed</p>
-            <p>C) develops</p>
-            <p>D) development</p>
-        </div>
-        <div class="answer">Answer: A) developing</div>
-    </div>
-
-    <div class="question">
-        <p><strong>16.</strong> Many urban residents are ________ to suburban areas as remote work policies become permanent at major companies.</p>
-        <div class="options">
-            <p>A) relocate</p>
-            <p>B) relocating</p>
-            <p>C) relocated</p>
-            <p>D) relocation</p>
-        </div>
-        <div class="answer">Answer: B) relocating</div>
-    </div>
-
-    <div class="question">
-        <p><strong>17.</strong> The United Nations report on climate change ________ immediate action to reduce carbon emissions worldwide.</p>
-        <div class="options">
-            <p>A) calls for</p>
-            <p>B) calling for</p>
-            <p>C) called for</p>
-            <p>D) to call for</p>
-        </div>
-        <div class="answer">Answer: A) calls for</div>
-    </div>
-
-    <div class="question">
-        <p><strong>18.</strong> The multinational trade agreement, ________ was signed last month, eliminates tariffs on over 1,000 products between the participating nations.</p>
-        <div class="options">
-            <p>A) it</p>
-            <p>B) that</p>
-            <p>C) which</p>
-            <p>D) who</p>
-        </div>
-        <div class="answer">Answer: C) which</div>
-    </div>
-
-    <div class="question">
-        <p><strong>19.</strong> Scientists have developed a new carbon capture technology that can ________ atmospheric CO2 levels more efficiently than previous methods.</p>
-        <div class="options">
-            <p>A) reducing</p>
-            <p>B) reduced</p>
-            <p>C) reduce</p>
-            <p>D) reduction</p>
-        </div>
-        <div class="answer">Answer: C) reduce</div>
-    </div>
-
-    <div class="question">
-        <p><strong>20.</strong> The cybersecurity breach ________ to have originated from a sophisticated hacking group based in Eastern Europe.</p>
-        <div class="options">
-            <p>A) believes</p>
-            <p>B) believed</p>
-            <p>C) believing</p>
-            <p>D) is believed</p>
-        </div>
-        <div class="answer">Answer: D) is believed</div>
-    </div>
-
-    <div class="question">
-        <p><strong>21.</strong> The tech company's CEO announced that the new smartphone model will be ________ next month at their annual product showcase.</p>
-        <div class="options">
-            <p>A) unveiling</p>
-            <p>B) unveiled</p>
-            <p>C) unveil</p>
-            <p>D) unveils</p>
-        </div>
-        <div class="answer">Answer: B) unveiled</div>
-    </div>
-
-    <div class="question">
-        <p><strong>22.</strong> ________ the sudden rise in global oil prices, many airlines have temporarily increased their fuel surcharges.</p>
-        <div class="options">
-            <p>A) Following</p>
-            <p>B) Follow</p>
-            <p>C) Followed</p>
-            <p>D) To follow</p>
-        </div>
-        <div class="answer">Answer: A) Following</div>
-    </div>
-
-    <div class="question">
-        <p><strong>23.</strong> The company's board of directors unanimously ________ the proposal to merge with their main competitor.</p>
-        <div class="options">
-            <p>A) approve</p>
-            <p>B) approving</p>
-            <p>C) approved</p>
-            <p>D) approval</p>
-        </div>
-        <div class="answer">Answer: C) approved</div>
-    </div>
-
-    <div class="question">
-        <p><strong>24.</strong> The environmental protection agency ________ stricter regulations on industrial waste disposal to take effect next year.</p>
-        <div class="options">
-            <p>A) has announced</p>
-            <p>B) announcing</p>
-            <p>C) announced</p>
-            <p>D) announce</p>
-        </div>
-        <div class="answer">Answer: A) has announced</div>
-    </div>
-
-    <div class="question">
-        <p><strong>25.</strong> The research study, ________ results were published in a leading medical journal, suggests a potential breakthrough in Alzheimer's treatment.</p>
-        <div class="options">
-            <p>A) who</p>
-            <p>B) whom</p>
-            <p>C) which</p>
-            <p>D) whose</p>
-        </div>
-        <div class="answer">Answer: D) whose</div>
-    </div>
-
-    <div class="question">
-        <p><strong>26.</strong> The government's new initiative aims to provide high-speed internet access to rural communities that have traditionally been ________ underserved.</p>
-        <div class="options">
-            <p>A) significantly</p>
-            <p>B) significance</p>
-            <p>C) significant</p>
-            <p>D) significantly to</p>
-        </div>
-        <div class="answer">Answer: A) significantly</div>
-    </div>
-
-    <div class="question">
-        <p><strong>27.</strong> The Olympic Committee ________ that the next Winter Games will incorporate several new sporting events.</p>
-        <div class="options">
-            <p>A) confirm</p>
-            <p>B) confirming</p>
-            <p>C) confirmed</p>
-            <p>D) confirms</p>
-        </div>
-        <div class="answer">Answer: C) confirmed</div>
-    </div>
-
-    <div class="question">
-        <p><strong>28.</strong> The retail industry is rapidly ________ to changing consumer behaviors, with many stores expanding their online presence.</p>
-        <div class="options">
-            <p>A) adapting</p>
-            <p>B) adapted</p>
-            <p>C) adapts</p>
-            <p>D) adapt</p>
-        </div>
-        <div class="answer">Answer: A) adapting</div>
-    </div>
-
-    <div class="question">
-        <p><strong>29.</strong> Electric vehicles are becoming increasingly popular as battery technology ________ and charging infrastructure expands.</p>
-        <div class="options">
-            <p>A) improves</p>
-            <p>B) improved</p>
-            <p>C) improving</p>
-            <p>D) improve</p>
-        </div>
-        <div class="answer">Answer: A) improves</div>
-    </div>
-
-    <div class="question">
-        <p><strong>30.</strong> The international aid package, ________ was approved last week, will provide critical resources to regions affected by the recent natural disasters.</p>
-        <div class="options">
-            <p>A) it</p>
-            <p>B) who</p>
-            <p>C) which</p>
-            <p>D) what</p>
-        </div>
-        <div class="answer">Answer: C) which</div>
-    </div>
-
-    <button class="show-answers" onclick="showAnswers()">Show Answers</button>
-
-    <script>
-        function showAnswers() {
-            const answers = document.querySelectorAll('.answer');
-            answers.forEach(answer => {
-                answer.style.display = 'block';
-            });
-        }
-    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+function shareOnTwitter() {
+  const scoreText = document.getElementById("score")?.textContent || "";
+  const timeText = document.getElementById("time-result")?.textContent || "";
+  const tweetText = encodeURIComponent(`TOEIC Part 5 模擬問題に挑戦しました！\n${scoreText}\n${timeText}\n#TOEIC #英語学習`);
+  const url = encodeURIComponent(window.location.href);
+  const tweetUrl = `https://twitter.com/intent/tweet?text=${tweetText}&url=${url}`;
+  window.open(tweetUrl, '_blank');
+}
+function captureResult() {
+  const resultArea = document.querySelector('.result');
+  html2canvas(resultArea).then(canvas => {
+    const link = document.createElement('a');
+    link.download = 'toeic_result.png';
+    link.href = canvas.toDataURL();
+    link.click();
+  });
+}
+</script>
 </body>
 </html>
